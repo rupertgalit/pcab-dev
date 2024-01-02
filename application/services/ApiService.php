@@ -57,16 +57,16 @@ class ApiService
 
         $response = curl_exec( $ch );
         $http_status_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-        if ( curl_errno( $ch ) ) {
-            $error = curl_error( $ch );
+        // if ( curl_errno( $ch ) ) {
+        //     $error = curl_error( $ch );
 
-            http_response_code( 500 );
+        //     http_response_code( 500 );
 
-            return [
-                'status_code' => 500,
-                'error' => $error
-            ];
-        }
+        //     return [
+        //         'status_code' => 500,
+        //         'error' => $error
+        //     ];
+        // }
         curl_close( $ch );
 
         // expecting to be a json encoded response

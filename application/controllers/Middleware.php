@@ -61,8 +61,8 @@ class Middleware extends REST_Controller
  }
         $transaction[ 'method' ] = $data[ 'data' ][ 'merchant_details' ][ 'method' ];
         $transaction[ 'txn_type' ] = $data[ 'data' ][ 'merchant_details' ][ 'txn_type' ];
-        $transaction[ 'mobile_number' ] = $data[ 'data' ][ 'merchant_details' ][ 'mobile_number' ];
-        $transaction[ 'city' ] = $data[ 'data' ][ 'merchant_details' ][ 'city' ];
+        $transaction[ 'mobile_number' ] = $data[ 'data' ][ 'merchant_details' ][ 'scanner_mobile_number' ];
+        // $transaction[ 'city' ] = $data[ 'data' ][ 'merchant_details' ][ 'city' ];
         $transaction[ 'txn_amount' ] = $data[ 'data' ][ 'merchant_details' ][ 'txn_amount' ];
         $transaction[ 'status' ] = 'STARTED';
         foreach ( $data[ 'data' ][ 'other_details' ] as $item ) {
@@ -168,7 +168,7 @@ class Middleware extends REST_Controller
                     $this->response( [
                         'messege0'=>'Success',
                         'error0'=>'true',
-                        'data'=>$dresponse[ 'response' ]
+                        'data'=>$response[ 'response' ]
                     ], Rest_Controller::HTTP_UNAUTHORIZED );
                 }
 
