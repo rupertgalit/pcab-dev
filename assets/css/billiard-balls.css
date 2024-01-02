@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&display=swap');
+
+.billiard-ball{
+  --_color-yellow: hsl(60  100% 50%);
+  --_color-blue:   hsl(240 100% 50%);
+  --_color-red:    hsl(0   100% 50%);
+  --_color-pink:   hsl(325 100% 50%);
+  --_color-purple: hsl(300 100% 25%);
+  --_color-orange: hsl(25  100% 50%);
+  --_color-green:  hsl(125 100% 25%);
+  --_color-brown:  hsl(10  100% 25%);
+  --_color-black:  hsl(0   0%    5%);
+  --_color-white:  hsl(0   0%   95%);
+  --_grad-light: radial-gradient(100% 100% at 70% 15%, hsl(0 0% 100%/.5), hsl(0 0% 100%/.2) 10%, hsl(0 0% 0%/.6) 60%, hsl(0 0% 0%/.9));
+  
+  width: 8rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  box-shadow: -1rem 1rem 1rem hsl(0 0% 0% / .5);
+  background-color: var(--_color-white);
+  background-image: var(--_grad-light);
+}
+
+/* snooker */
+.billiard-ball[data-snooker]{
+  background-color: var(--_color, var(--_color-white));
+  background-image: var(--_grad-light);
+}
+.billiard-ball[data-snooker="red"   ]{ --_color: var(--_color-red   ); }
+.billiard-ball[data-snooker="yellow"]{ --_color: var(--_color-yellow); }
+.billiard-ball[data-snooker="green" ]{ --_color: var(--_color-green ); }
+.billiard-ball[data-snooker="brown" ]{ --_color: var(--_color-brown ); }
+.billiard-ball[data-snooker="blue"  ]{ --_color: var(--_color-blue  ); }
+.billiard-ball[data-snooker="pink"  ]{ --_color: var(--_color-pink  ); }
+.billiard-ball[data-snooker="black" ]{ --_color: var(--_color-black ); }
+.billiard-ball[data-snooker="white" ]{ --_color: var(--_color-white ); }
+  
+/* pool */
+.billiard-ball[data-pool] {
+  --_c1: 20%;
+  --_s1: calc(var(--_stripe, 0) * 22.5%);
+  --_s2: calc(100% - var(--_stripe, 0) * 22.5%);
+  --_grad-cirle: radial-gradient(100% 100%, var(--_color-white) var(--_c1), #0000 calc(var(--_c1) + 1px));
+  --_grad-stripe: linear-gradient(180deg, #0000 calc(var(--_s1) - 1px), var(--_color, #0000) var(--_s1) var(--_s2), #0000 calc(var(--_s2) + 1px));
+  
+  container-type: inline-size;
+  display: grid;
+  place-items: center;
+  background-color: var(--_color-white);
+  background-image: var(--_grad-light), var(--_grad-cirle), var(--_grad-stripe);
+}
+.billiard-ball[data-pool]::after{ 
+  content: var(--_nr, ""); 
+  color: var(--_color-black);
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  font-size: 25cqi; 
+  text-decoration: var(--_line, none);
+}
+.billiard-ball[data-pool="0" ] { --_nr:   ""; --_color: var(--_color-white ); }
+.billiard-ball[data-pool="1" ] { --_nr:  "1"; --_color: var(--_color-yellow); }
+.billiard-ball[data-pool="2" ] { --_nr:  "2"; --_color: var(--_color-blue  ); }
+.billiard-ball[data-pool="3" ] { --_nr:  "3"; --_color: var(--_color-red   ); }
+.billiard-ball[data-pool="4" ] { --_nr:  "4"; --_color: var(--_color-purple); }
+.billiard-ball[data-pool="5" ] { --_nr:  "5"; --_color: var(--_color-orange); }
+.billiard-ball[data-pool="6" ] { --_nr:  "6"; --_color: var(--_color-green ); --_line: underline; }
+.billiard-ball[data-pool="7" ] { --_nr:  "7"; --_color: var(--_color-brown ); }
+.billiard-ball[data-pool="8" ] { --_nr:  "8"; --_color: var(--_color-black ); }
+.billiard-ball[data-pool="9" ] { --_nr:  "9"; --_color: var(--_color-yellow); --_stripe: 1; --_line: underline; }
+.billiard-ball[data-pool="10"] { --_nr: "10"; --_color: var(--_color-blue  ); --_stripe: 1; }
+.billiard-ball[data-pool="11"] { --_nr: "11"; --_color: var(--_color-red   ); --_stripe: 1; }
+.billiard-ball[data-pool="12"] { --_nr: "12"; --_color: var(--_color-purple); --_stripe: 1; }
+.billiard-ball[data-pool="13"] { --_nr: "13"; --_color: var(--_color-orange); --_stripe: 1; }
+.billiard-ball[data-pool="14"] { --_nr: "14"; --_color: var(--_color-green ); --_stripe: 1; }
+.billiard-ball[data-pool="15"] { --_nr: "15"; --_color: var(--_color-brown ); --_stripe: 1; }
+
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* pool sample
+<div class="billiard-ball" data-pool="1"></div>
+<div class="billiard-ball" data-pool="2"></div>
+
+snooker
+<div class="billiard-ball" data-snooker="white"></div>
+<div class="billiard-ball" data-snooker="red"></div> */

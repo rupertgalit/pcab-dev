@@ -1,0 +1,204 @@
+/* Import Google Font */
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
+/* Variable Declarations */
+:root {
+    --background-color: #181824;
+    --text-color: #f2f6f8;
+    --accent-color: #349e97;
+    --input-background: #fffefc;
+    --input-hover-background: #f3f3f3;
+    --input-focus-background: #eaeaea;
+    --submit-button-background: #f0e45d;
+    --submit-button-text-color: #000000;
+    --danger: #d9534f;
+}
+
+.bg-success {
+    background-color: var(--accent-color)!important;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(to bottom, transparent, #3D3852), url('../images/bg-layout-default.png');
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-message {
+    color: #FFF;
+    background-color: var(--danger);
+    width: 100%;
+    font-size: .8rem;
+    font-weight: 500;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 2px;
+    opacity: 0;
+    transition: all 200ms;
+}
+
+.error-message.show {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: -25px;
+}
+
+.logo-container img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.login-form {
+    margin-top: 35px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 300px;
+    padding: 13px;
+    margin: 5px auto;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: none;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease-in-out;
+}
+
+input[type="text"],
+input[type="password"] {
+    background: var(--input-background);
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+    background: var(--input-hover-background);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background: var(--input-focus-background);
+}
+
+input[type="submit"] {
+    background: var(--submit-button-background);
+    color: var(--submit-button-text-color);
+    cursor: pointer;
+}
+
+input.no-value[type="text"]::placeholder,
+input.no-value[type="password"]::placeholder {
+    color: var(--danger)
+}
+
+input.no-value[type="text"],
+input.no-value[type="password"] {
+    border: 2px var(--danger) solid;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-color);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+input[type="checkbox"]+span {
+    user-select: none;
+    line-height: 20px;
+}
+
+.submit-container.loading > input[type=submit] {
+    pointer-events: none;
+    opacity: .8;
+}
+
+.submit-container.loading > i {
+    display: inline!important;
+}
+
+.submit-container > i {
+    display: none!important;
+    position: fixed;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    color: var(--accent-color);
+    font-size: larger;
+    display: inline;
+    z-index: 1;
+}
+
+.login-form {
+    margin-top: 35px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
