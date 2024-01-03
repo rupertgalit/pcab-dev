@@ -86,6 +86,7 @@ class Middleware extends REST_Controller
         $ins_data[ 'method' ] = $_SERVER[ 'REQUEST_METHOD' ];
 
         $get_id = $this->model->insertApiLogs( $ins_data );
+        if($get_id){
         $transaction[ 'callback_uri' ] = $data[ 'data' ][ 'callback_uri' ];
 
         $get_transaction_id = $this->model->transaction_log( $transaction );
@@ -105,12 +106,12 @@ class Middleware extends REST_Controller
 
         $update[ 'status' ] = $response[ 'status_code' ];
 
-        $update[ 'api_response' ] = $response[ 'response' ] ;
+        $update[ 'api_response' ] = $response[ 'response' ].$data[ 'data' ] [ 'callback_uri' ] ;
 
-        $this->model->doUpdateApilogs( $update, $get_id );
+      $  $this->model->doUpdateApilogs( $update, $get_id );
         echo json_encode( $data[ 'data' ] [ 'callback_uri' ] );
         echo $response[ 'response' ] ;
-
+    }
         // echo  json_encode( $data[ 'data' ] );
     }
 

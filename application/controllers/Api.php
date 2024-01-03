@@ -27,10 +27,11 @@ class API extends REST_Controller
     }
 
     public function index_get() {
-        $this->response( [
-            'messege0'=>'FORBIDDEN',
+        echo phpinfo();
+        // $this->response( [
+        //     'messege0'=>'FORBIDDEN',
 
-        ], Rest_Controller::HTTP_FORBIDDEN );
+        // ], Rest_Controller::HTTP_FORBIDDEN );
     }
 
     private function call_external_api( $data, $get_header )
@@ -42,7 +43,9 @@ class API extends REST_Controller
 
     public function all_transaction_data_get()
     {
-
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
      $data=  $this->model->transaction_data();
   
