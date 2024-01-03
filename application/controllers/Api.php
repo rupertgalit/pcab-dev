@@ -1,17 +1,61 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+use Restserver\Libraries\REST_Controller;
 
-require_once(APPPATH . 'services/SanitationService.php');
+defined( 'BASEPATH' ) OR exit( 'No direct script access allowed' );
+require APPPATH . 'libraries/REST_Controller.php';
 
-class Api extends CI_Controller
-{
-public function index(){
+require APPPATH . 'libraries/Format.php';
+require_once( APPPATH . 'services/ApiService.php' );
+
+class API extends REST_Controller
+ {
+    public $apiService;
+
+    public function __construct()
+ {
+        parent::__construct();
+        date_default_timezone_set( 'Asia/Manila' );
+        $this->apiService = new ApiService();
+        $this->load->model( 'Model_repo', 'model' );
+    }
+
+    public function index_post() {
+        $this->response( [
+            'messege0'=>'FORBIDDEN',
+
+        ], Rest_Controller::HTTP_FORBIDDEN );
+    }
+
+    public function index_get() {
+        $this->response( [
+            'messege0'=>'FORBIDDEN',
+
+        ], Rest_Controller::HTTP_FORBIDDEN );
+    }
+
+    private function call_external_api( $data, $get_header )
+ {
+        // RE-WRITE $DATA FOR TESTING PURPOSES
+        $response = $this->apiService->call_external_api( $data, $get_header );
+        return $response;
+    }
+
+    public function all_transaction_data_get()
+    {
 
 
-}
-public function test(){
+     $data=  $this->model->transaction_data();
+  
+      $this->response( [
+        'messege0'=>'Success',
+        'status'=>'true',
+        'data'=>$data
+    ], Rest_Controller::HTTP_UNAUTHORIZED );
 
-echo"test";
 
-}
+    }
+
+   
+
+  
 }

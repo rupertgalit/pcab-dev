@@ -55,6 +55,8 @@ $route['404_override'] = 'custom404';
 $route['default_controller'] = 'middleware';
 $route['generate-qr'] = 'middleware/generate_qr';
 
+$route['all-transaction-data'] = 'api/all_transaction_data';
+
 
 
 
