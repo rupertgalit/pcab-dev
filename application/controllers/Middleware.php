@@ -97,7 +97,7 @@ class Middleware extends REST_Controller
             unset( $data[ 'data' ][ 'other_details' ] );
         }
 
-        $data[ 'data' ] [ 'callback_uri' ] = base_url().'postback/?ref='.$data[ 'data' ][ 'reference_number' ];
+        $data[ 'data' ] [ 'callback_uri' ] = base_url().'middleware/postback/?ref='.$data[ 'data' ][ 'reference_number' ];
 
         $response = $this->call_external_api( $data[ 'data' ], $get_header );
 

@@ -51,4 +51,21 @@ public function updateTransaction( $update, $where ){
 
 
 }
+
+
+public function transaction_data(){
+
+    $sql = "SELECT * FROM transactions
+    INNER JOIN tbl_callback ON transactions.reference_number = tbl_callback.reference_number";
+
+
+    // $sql = "select * from transactions atr left join tbl_callback tc on
+    //          ak.api_ID=au.apiID
+    //          where
+    //   ak.key like ? and au.username like ? and au.userpassword like ?  ";
+            $Q = $this->db->query($sql);
+            return $Q->row_array()?$Q->result_array():false;
+
+
+}
 }
