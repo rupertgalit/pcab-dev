@@ -5,7 +5,7 @@ class Model_repo extends CI_Model
  {
 
     public function select_refNumber( $data )
-    {
+ {
         $qry = 'select callback_uri,status from transactions where reference_number like ? ';
         $Q = $this->db->query( $qry, $data );
         return $Q->row_array()?$Q->row_array():false;
@@ -13,7 +13,7 @@ class Model_repo extends CI_Model
     }
 
     public function finddata( $data )
-    {
+ {
         $qry = 'select * from tbl_callback where reference_number like ? ';
         $Q = $this->db->query( $qry, $data );
         return $Q->row_array()?$Q->result_array():false;
@@ -21,19 +21,20 @@ class Model_repo extends CI_Model
     }
 
     public function insertApiLogs( $data ) 
-    {
+ {
         $lastId = $this->db->insert_id( $this->db->insert( 'api_logs', $data ) );
         return $lastId;
     }
 
     public function doInsertCallback( $data ) 
-    {
+ {
 
-        return  $this->db->insert( 'tbl_callback', $data );
+        $lastId = $this->db->insert_id( $this->db->insert( 'tbl_callback', $data ) );
+        return    $lastId;
     }
 
     public function transaction_log( $data ) 
-    {
+ {
 
         $lastId = $this->db->insert_id( $this->db->insert( 'transactions', $data ) );
         return $lastId;
@@ -44,28 +45,26 @@ class Model_repo extends CI_Model
         $this->db->where( 'api_id', $where )->update( 'api_logs', $update );
         return $this->db->affected_rows();
     }
-public function updateTransaction( $update, $where ){
 
-    $this->db->where( 'reference_number', $where )->update( 'transactions', $update );
-    return $this->db->affected_rows();
+    public function updateTransaction( $update, $where ) {
 
+        $this->db->where( 'reference_number', $where )->update( 'transactions', $update );
+        return $this->db->affected_rows();
 
-}
+    }
 
+    public function updateCallBack( $update, $where ) {
+        $this->db->where( 'tbl_id', $where )->update( 'tbl_callback', $update );
+        return $this->db->affected_rows();
 
-public function transaction_data(){
+    }
 
-    $sql = "SELECT * FROM transactions
-    INNER JOIN tbl_callback ON transactions.reference_number = tbl_callback.reference_number";
+    public function transaction_data() {
 
+        $sql = 'SELECT * FROM transactions';
 
-    // $sql = "select * from transactions atr left join tbl_callback tc on
-    //          ak.api_ID=au.apiID
-    //          where
-    //   ak.key like ? and au.username like ? and au.userpassword like ?  ";
-            $Q = $this->db->query($sql);
-            return $Q->row_array()?$Q->result_array():false;
+        $Q = $this->db->query( $sql );
+        return $Q->row_array()?$Q->result_array():false;
 
-
-}
+    }
 }
