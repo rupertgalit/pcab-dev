@@ -76,17 +76,17 @@ class Middleware extends REST_Controller
 
         $totalAmount = 0;
 
-        // foreach ($data['data']['other_details'] as $item) {
+        foreach ($data['data']['other_details'] as $item) {
 
-        //     $itemName = $item['item'];
-        //     $amount = $item['amount'];
-        //     // Sanitize and validate column name ( replace non-alphanumeric characters )
-        //     $columnName = preg_replace('/[^a-zA-Z0-9_]/', '', $itemName);
+            $itemName = $item['item'];
+            $amount = $item['amount'];
+            // Sanitize and validate column name ( replace non-alphanumeric characters )
+            $columnName = preg_replace('/[^a-zA-Z0-9_]/', '', $itemName);
 
-        //     $transaction[$columnName] = $amount;
+            $transaction[$columnName] = $amount;
 
-        //     $totalAmount += $amount;
-        // }
+            // $totalAmount += $amount;
+        }
 
         // if ($txnAmount != $totalAmount) {
 
